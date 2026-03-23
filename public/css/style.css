@@ -1,0 +1,236 @@
+body {
+    background-color: #f8f9fb;
+}
+
+.search-bar {
+    /* background: #fff;
+    border-radius: 12px; */
+    padding: 10px;
+    /* box-shadow: 0 2px 8px rgba(0,0,0,0.05); */
+}
+
+.search-btn {
+    background-color: #0d1b2a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.center-content {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+
+.action-btn {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 6px 15px;
+    margin: 5px;
+    background: #fff;
+}
+
+.cursor {
+    cursor: pointer;
+}
+.offcanvas {
+    width: 300px;
+}
+
+.offcanvas-body a:hover {
+    color: #0d1b2a;
+    font-weight: 500;
+}
+.header-wrapper {
+    width: 100%;
+    background-color: #ffffff; /* FULL WHITE */
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.search-item {
+    min-width: 160px;
+    border-right: 1px solid #eee;
+    padding: 10px 15px;
+}
+.search-item input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent;
+    width: 100%;
+    cursor: pointer;
+}
+.search-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-right: 10px;
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+.search-item:hover {
+    border-color: #0d1b2a;
+}
+
+.search-item:focus-within {
+    border-color: #0d1b2a;
+    box-shadow: 0 0 0 2px rgba(13, 27, 42, 0.1);
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* spacing between boxes */
+    background: transparent; /* remove old bg */
+    box-shadow: none;
+}
+/* Calendar container */
+.flatpickr-calendar {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: none;
+}
+
+/* Month header */
+.flatpickr-months {
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+}
+
+/* Days */
+.flatpickr-day {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Hover */
+.flatpickr-day:hover {
+    background: #f1f5f9;
+}
+
+/* Selected start date (green) */
+.flatpickr-day.startRange {
+    background: #22c55e;
+    color: #fff;
+    border-radius: 8px 0 0 8px;
+}
+
+/* Selected end date (dark) */
+.flatpickr-day.endRange {
+    background: #0f172a;
+    color: #fff;
+    border-radius: 0 8px 8px 0;
+}
+
+/* In range */
+.flatpickr-day.inRange {
+    background: #dcfce7;
+    color: #000;
+}
+
+/* Today */
+.flatpickr-day.today {
+    border: 1px solid #22c55e;
+}
+
+/* Arrows */
+.flatpickr-prev-month,
+.flatpickr-next-month {
+    border-radius: 50%;
+}
+.date-box:hover {
+    border-color: #28a745;
+    background-color: #28a745;
+}
+
+.date-box:focus-within {
+    border-color: #28a745;
+    box-shadow: 0 0 0 2px rgba(40,167,69,0.15);
+}
+/* Header container */
+.app-header {
+    height: 100px;              /* 🔥 fixed height */
+    display: flex;
+    align-items: center;       /* vertical center */
+    justify-content: space-between;
+    padding: 0 20px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.discount-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;
+}
+/* Container */
+.custom-tabs {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 4px;
+    display: flex;
+}
+
+/* Each tab */
+.custom-tabs .nav-item {
+    flex: 1;
+}
+
+/* Tab button */
+.custom-tabs .nav-link {
+    border-radius: 10px;
+    text-align: center;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Active tab */
+.custom-tabs .nav-link.active {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.object-fit-cover {
+    object-fit: cover;
+    height: 100%;
+}
+.stay-summary {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
