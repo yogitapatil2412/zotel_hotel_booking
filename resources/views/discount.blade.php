@@ -39,7 +39,7 @@ $title = 'Discount Configuration';
                                 Min Nights
                             </label>
                             <input type="number"
-                                name="min_nights"=class="form-control form-control-sm"
+                                name="min_nights" class="form-control form-control-sm"
                                 value="{{ $d->min_nights }}">
                         </div>
                         <div>
