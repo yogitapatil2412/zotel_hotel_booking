@@ -9,10 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkInDefault = checkin.dataset.default;
     const checkOutDefault = checkout.dataset.default;
 
+    const checkInDate = new Date(checkInDefault);
+    const minCheckoutDate = new Date(checkInDate.getTime());
+    minCheckoutDate.setDate(minCheckoutDate.getDate() + 1);
+
     // CHECKOUT picker
     const checkoutPicker = flatpickr(checkout, {
         dateFormat: "Y-m-d",
-        minDate: checkOutDefault,
+        minDate: minCheckoutDate,
         maxDate: maxDate, 
         defaultDate: checkOutDefault
     });
