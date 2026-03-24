@@ -18,7 +18,7 @@ class InventorySeeder extends Seeder
         $standard = RoomType::where('name', 'Standard Room')->first();
         $deluxe = RoomType::where('name', 'Deluxe Room')->first();
         $start = Carbon::create(2026, 3, 23);
-        $end = Carbon::create(2026, 4, 21);
+        $end = Carbon::create(2026, 4, 24);
 
         $data = [];
 
