@@ -14,18 +14,16 @@ $title = null;
         Select your stay at Zotel Demo Property
     </h5>
 
-    <p class="text-muted">
+    <div class="mb-3 text-muted">
+
         {{ $nights }} night{{ $nights > 1 ? 's' : '' }} ·
         {{ $guests }} adult{{ $guests > 1 ? 's' : '' }}
 
-        @if($longStayApplied)
-        · {{ $longStayApplied }}% long stay discount
-        @endif
+        @foreach($discountSummary as $meal => $percent)
+        · {{ $percent }}% {{ $meal }} rate plan discount
+        @endforeach
 
-        @if($lastMinuteApplied)
-        · {{ $lastMinuteApplied }}% last minute deal
-        @endif
-    </p>
+    </div>
     @endif
     @forelse($rooms as $room)
 
@@ -33,6 +31,7 @@ $title = null;
 
         <div class="row g-0">
 
+            {{-- Room Image (optional) --}}
             <div class="col-md-4">
                 <img src="{{ asset('images/' . $room['image']) }}"
                     class="img-fluid h-100 w-100 object-fit-cover">
@@ -40,45 +39,48 @@ $title = null;
 
             <div class="col-md-8 p-4">
 
+                {{-- Room Name --}}
                 <h5 class="fw-semibold mb-2">
                     {{ $room['name'] }}
                 </h5>
 
                 <p class="text-muted small mb-4">
-                    {{ $room['description'] }}
+                    Max Occupancy: {{ $room['max_occupancy'] }} guests
                 </p>
 
+                {{-- Plans --}}
                 @foreach($room['plans'] as $plan)
 
                 <div class="d-flex justify-content-between align-items-center border-top py-3">
 
+                    {{-- Left Section --}}
                     <div>
 
                         <div class="fw-medium mb-1">
                             {{ $plan['type'] }}
                         </div>
 
-                        <div class="small text-muted">
-
-                            {{-- Long Stay --}}
-                            @if($plan['long_discount'] > 0)
-                            <span class="badge bg-success-subtle text-success">
-                                -{{ $plan['long_discount'] }}%
-                            </span>
+                        {{-- Calculation Line --}}
+                        <div class="small text-muted mb-1">
+                            {{ $nights }} night{{ $nights > 1 ? 's' : '' }} ·
+                            {{ $guests }} adult{{ $guests > 1 ? 's' : '' }}
+                            @if($plan['discount'] > 0)
+                            · {{ $plan['discount'] }}% discount
                             @endif
+                        </div>
 
-                            {{-- Last Minute --}}
-                            @if($plan['last_discount'] > 0)
-                            <span class="badge bg-warning-subtle text-warning">
-                                -{{ $plan['last_discount'] }}%
-                            </span>
-                            @endif
+                        {{-- Discount Badge --}}
+                        @if($plan['discount'] > 0)
+                        <span class="badge bg-success-subtle text-success">
+                            -{{ $plan['discount'] }}%
+                        </span>
+                        @endif
 
-                            {{-- Old Price --}}
-                            <span class="text-decoration-line-through ms-1">
+                        {{-- Old Price --}}
+                        <div class="small text-muted mt-1">
+                            <span class="text-decoration-line-through">
                                 ₹{{ number_format($plan['old_price']) }}
                             </span>
-
                         </div>
 
                     </div>
@@ -101,6 +103,7 @@ $title = null;
                         data-room="{{ $room['name'] }}"
                         data-plan="{{ $plan['type'] }}"
                         data-price="{{ $plan['price'] }}"
+                        data-discount="{{ $plan['discount'] }}"
                         data-old="{{ $plan['old_price'] }}">
                         Select
                     </button>
@@ -150,11 +153,10 @@ $title = null;
             <input type="hidden" name="room" id="formRoom">
             <input type="hidden" name="plan" id="formPlan">
             <input type="hidden" name="price" id="formPrice">
+            <input type="hidden" name="discount" id="formDiscount">
             <input type="hidden" name="check_in" value="{{ request('check_in') }}">
             <input type="hidden" name="check_out" value="{{ request('check_out') }}">
             <input type="hidden" name="guests" value="{{ $guests }}">
-            <input type="hidden" name="long_discount" value="{{ $longStayApplied }}">
-            <input type="hidden" name="last_discount" value="{{ $lastMinuteApplied }}">
 
             <div class="container d-flex justify-content-between align-items-center">
 

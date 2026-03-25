@@ -7,16 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     protected $fillable = [
-        'room_type',
+        'rate_plan_id',
         'date',
-        'available',
-        'price_1',
-        'price_2',
-        'price_3',
-        'breakfast'
+        'available'
     ];
-    public function roomType()
+
+    public function ratePlan()
     {
-        return $this->belongsTo(RoomType::class);
+        return $this->belongsTo(RatePlan::class);
     }
 }

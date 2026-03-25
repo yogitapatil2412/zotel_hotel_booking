@@ -19,8 +19,7 @@ return new class extends Migration
             $table->date('check_in');
             $table->date('check_out');
             $table->integer('guests');
-            $table->integer('long_discount')->default(0);
-            $table->integer('last_discount')->default(0);
+            $table->integer('discount')->default(0);
             $table->integer('total_price');
             $table->timestamps();
         });

@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('room_types', function (Blueprint $table) {
+        Schema::create('rate_plan_discounts', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->integer('max_occupancy');
-            $table->integer('total_rooms');
+            $table->enum('type', ['early_bird', 'long_stay', 'last_minute']);
+            $table->decimal('discount_percent', 5, 2);
+            $table->integer('min_nights')->nullable();
+            $table->integer('days_before')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('room_types');
+        Schema::dropIfExists('rate_plan_discounts');
     }
 };

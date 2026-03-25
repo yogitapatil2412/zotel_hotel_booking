@@ -44,17 +44,10 @@
                 <strong>{{ $booking->guests }} adult</strong>
             </div>
 
-            @if($booking->long_discount)
+            @if($booking->discount)
             <div class="d-flex justify-content-between text-success mb-2">
-                <span>Long Stay</span>
-                <strong>-{{ $booking->long_discount }}%</strong>
-            </div>
-            @endif
-
-            @if($booking->last_discount)
-            <div class="d-flex justify-content-between text-info mb-2">
-                <span>Last Minute</span>
-                <strong>-{{ $booking->last_discount }}%</strong>
+                <span>Discount</span>
+                <strong>-{{ $booking->discount }}%</strong>
             </div>
             @endif
 

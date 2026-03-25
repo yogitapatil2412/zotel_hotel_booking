@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DiscountSeeder::class,
             RoomTypeSeeder::class,
+            RatePlansSeeder::class,
+            RatePlanDiscountsSeeder::class,
             InventorySeeder::class,
         ]);
     }

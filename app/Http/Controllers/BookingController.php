@@ -21,8 +21,7 @@ class BookingController extends Controller
             'check_in' => $request->check_in,
             'check_out' => $request->check_out,
             'guests' => $request->guests,
-            'long_discount' => $request->long_discount ?? 0,
-            'last_discount' => $request->last_discount ?? 0,
+            'discount' => $request->discount ?? 0,
             'total_price' => $request->price
         ]);
 

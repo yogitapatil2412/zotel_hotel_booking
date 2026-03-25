@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formRoom = document.getElementById('formRoom');
     const formPlan = document.getElementById('formPlan');
     const formPrice = document.getElementById('formPrice');
+    const formDiscount = document.getElementById('formDiscount');
 
     const clearBtn = document.getElementById('clearBtn');
 
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let room = this.dataset.room;
             let plan = this.dataset.plan;
+            let discount = this.dataset.discount;
             let price = parseInt(this.dataset.price);
             let old = parseInt(this.dataset.old);
 
@@ -39,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formRoom.value = room;
             formPlan.value = plan;
             formPrice.value = price;
+            formDiscount.value = discount;
         });
     });
 

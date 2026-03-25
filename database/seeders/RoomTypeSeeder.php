@@ -16,13 +16,21 @@ class RoomTypeSeeder extends Seeder
         RoomType::insert([
             [
                 'name' => 'Standard Room',
-                'description' => 'Clean, minimal space with queen bed, work desk, and natural light. 24 sqm.',
-                'image' => 'standard.jpg'
+                'description' => 'Clean, minimal space with queen bed.',
+                'image' => 'standard.jpg',
+                'max_occupancy' => 3,
+                'total_rooms' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Deluxe Room',
-                'description' => 'Spacious room with king bed, seating area, and panoramic city views. 36 sqm.',
-                'image' => 'deluxe.jpg'
+                'description' => 'Spacious room with premium amenities.',
+                'image' => 'deluxe.jpg',
+                'max_occupancy' => 4,
+                'total_rooms' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

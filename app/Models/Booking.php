@@ -13,8 +13,7 @@ class Booking extends Model
         'check_in',
         'check_out',
         'guests',
-        'long_discount',
-        'last_discount',
+        'discount',
         'total_price'
     ];
 }

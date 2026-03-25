@@ -10,32 +10,29 @@ $title = 'Inventory & Pricing';
 
 <div class="container py-4">
 
-    <ul class="nav nav-pills custom-tabs mb-4">
+    {{-- Dynamic Tabs --}}
+    <ul class="nav nav-pills mb-4">
 
+        @foreach($inventories as $roomName => $items)
         <li class="nav-item w-50">
-            <button class="nav-link active w-100"
+            <button class="nav-link {{ $loop->first ? 'active' : '' }} w-100"
                 data-bs-toggle="tab"
-                data-bs-target="#standard">
-                Standard Room
+                data-bs-target="#tab-{{ Str::slug($roomName) }}">
+                {{ $roomName }}
             </button>
         </li>
-
-        <li class="nav-item w-50">
-            <button class="nav-link w-100"
-                data-bs-toggle="tab"
-                data-bs-target="#deluxe">
-                Deluxe Room
-            </button>
-        </li>
+        @endforeach
 
     </ul>
 
     <div class="tab-content">
 
-        <!-- ---------------------- STANDARD ---------------------- -->
-        <div class="tab-pane fade show active" id="standard">
+        @foreach($inventories as $roomName => $items)
 
-            @if($standardRooms->count())
+        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+            id="tab-{{ Str::slug($roomName) }}">
+
+            @if($items->count())
 
             <div class="table-responsive">
                 <table class="table">
@@ -43,37 +40,50 @@ $title = 'Inventory & Pricing';
                     <thead class="table-light">
                         <tr>
                             <th>Room Type</th>
+                            <th>Rate Plan</th>
                             <th>Date</th>
-                            <th>Avail.</th>
-                            <th>1 Person</th>
-                            <th>2 Persons</th>
-                            <th>3 Persons</th>
-                            <th>Breakfast</th>
+                            <th>Max Occupancy</th>
+                            <th>Base Price</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach($standardRooms as $item)
+
+                        @foreach($items as $item)
+
+                        @php
+                        $plan = $item->ratePlan;
+                        $room = $plan->roomType;
+                        $date = \Carbon\Carbon::parse($item->date);
+
+                        @endphp
+
                         <tr>
-                            <td>{{ $item->roomType->name }}</td>
+                            <td>{{ $room->name }}</td>
                             <td>
-                                {{ \Carbon\Carbon::parse($item->date)->format('d M Y') }} <br>
+                                {{ $plan->name }}
+                                <small class="text-muted">({{ $plan->meal_plan }})</small>
+                            </td>
+
+                            <td>
+                                {{ \Carbon\Carbon::parse($item->date)->format('d M Y') }}
+                                <br>
                                 <small>
                                     {{ \Carbon\Carbon::parse($item->date)->format('D') }}
-                                    @if(\Carbon\Carbon::parse($item->date)->isToday())
+                                    @if($date->isToday())
                                     · Today
                                     @endif
                                 </small>
                             </td>
 
-                            <td>{{ $item->available }}</td>
+                            <td>{{ $plan->roomType->max_occupancy }}</td>
 
-                            <td>₹{{ number_format($item->price_1_person) }}</td>
-                            <td>₹{{ number_format($item->price_2_person) }}</td>
-                            <td>₹{{ number_format($item->price_3_person) }}</td>
-                            <td>₹{{ number_format($item->breakfast_price) }}</td>
+                            <td>₹{{ number_format($plan->base_price) }}</td>
+
                         </tr>
+
                         @endforeach
+
                     </tbody>
 
                 </table>
@@ -85,60 +95,7 @@ $title = 'Inventory & Pricing';
 
         </div>
 
-
-        <!-- ---------------------- DELUXE ---------------------- -->
-        <div class="tab-pane fade" id="deluxe">
-
-            @if($deluxeRooms->count())
-
-
-            <div class="table-responsive">
-                <table class="table">
-
-                    <thead class="table-light">
-                        <tr>
-                            <th>Room Type</th>
-                            <th>Date</th>
-                            <th>Avail.</th>
-                            <th>1 Person</th>
-                            <th>2 Persons</th>
-                            <th>3 Persons</th>
-                            <th>Breakfast</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach($deluxeRooms as $item)
-                        <tr>
-                            <td>{{ $item->roomType->name }}</td>
-                            <td>
-                                {{ \Carbon\Carbon::parse($item->date)->format('d M Y') }} <br>
-                                <small>
-                                    {{ \Carbon\Carbon::parse($item->date)->format('D') }}
-                                    @if(\Carbon\Carbon::parse($item->date)->isToday())
-                                    · Today
-                                    @endif
-                                </small>
-                            </td>
-
-                            <td>{{ $item->available }}</td>
-
-                            <td>₹{{ number_format($item->price_1_person) }}</td>
-                            <td>₹{{ number_format($item->price_2_person) }}</td>
-                            <td>₹{{ number_format($item->price_3_person) }}</td>
-                            <td>₹{{ number_format($item->breakfast_price) }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-
-                </table>
-            </div>
-
-            @else
-            <p>No data available</p>
-            @endif
-
-        </div>
+        @endforeach
 
     </div>
 

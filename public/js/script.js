@@ -1,5 +1,5 @@
 let guests = 1;
-const maxGuests = 3;
+const maxGuests = 4;
 
 function changeGuests(value) {
     guests += value;

@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoomType extends Model
 {
-    protected $fillable = ['name', 'image'];
+    protected $fillable = ['name', 'description', 'image', 'max_occupancy', 'total_rooms'];
 
-    public function inventories()
+    public function ratePlans()
     {
-        return $this->hasMany(Inventory::class);
+        return $this->hasMany(RatePlan::class);
     }
 }
